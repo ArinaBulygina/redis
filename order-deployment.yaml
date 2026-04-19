@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: order-service
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: order-service
@@ -16,13 +16,3 @@ spec:
         - name: order-service
           image: order_service:latest
           imagePullPolicy: Never
-
-          livenessProbe:
-            exec:
-              command:
-                - sh
-                - -c
-                - "pgrep -f app.py"
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            failureThreshold: 2
